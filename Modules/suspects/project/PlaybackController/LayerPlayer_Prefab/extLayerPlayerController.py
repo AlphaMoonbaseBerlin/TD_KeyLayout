@@ -28,7 +28,7 @@ class extLayerPlayerController:
 	
 	@property
 	def Available(self):
-		return [ self.Layer.op( name ) for name in self.ownerComp.op("opfind1").col("name")[1:] ]
+		return [ self.Layer.op( name ) for name in self.ownerComp.op("items").col("name")[1:] ]
 
 	def PlayNext(self, fadeoutActive = False):
 		if fadeoutActive: self.FadeoutActive()
