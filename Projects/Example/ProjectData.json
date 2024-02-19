@@ -1,0 +1,55 @@
+{
+    "ProjectName": "Default Project",
+    "Layer": {
+        "Titletext": {
+            "Default": "",
+            "Transition": 0.7,
+            "Hold": 5,
+            "FadeOverBlack": false,
+            "Presets": {
+                "All": [
+                    "Hello_World",
+                    "Welcome",
+                    "Goodbye"
+                ]
+            },
+            "Items": {
+                "Hello_World": {
+                    "Prefab": "SlideInText",
+                    "Arguments": {
+                        "Text": "Hello World"
+                    }
+                },
+                "Welcome": {
+                    "Prefab": "SlideInText",
+                    "Arguments": {
+                        "Text": "Welcome to this Demo!"
+                    }
+                },
+                "Goodbye": {
+                    "Prefab": "SlideInText",
+                    "Arguments": {
+                        "Text": "It was nice. See you on the other side!",
+                        "Fontfile": "Fonts/BAUHAUSHOMENAJE"
+                    }
+                }
+            }
+        },
+        "Background": {
+            "Default": "Background_16_9",
+            "Transition": 0.7,
+            "Hold": 5,
+            "FadeOverBlack": false,
+            "Presets": {},
+            "Items": {
+                "Background_16_9": {
+                    "Prefab": "Background",
+                    "Arguments": {
+                        "Background": "Media/Subfolder/simpleTree"
+                    }
+                }
+            }
+        }
+    },
+    "$schema": "./ProjectData.schema.json"
+}

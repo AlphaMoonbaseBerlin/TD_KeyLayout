@@ -22,6 +22,14 @@ class extLayerPlayerController:
 	def Active(self):
 		return { item for item in self.Layer.findChildren( depth = 1) if item.par.Level.eval() not in [0,2] }
 
+	@property
+	def Selected(self):
+		return [ self.Layer.op( name ) for name in self.ownerComp.op("selectedItems").col(0) ]
+	
+	@property
+	def Available(self):
+		return [ self.Layer.op( name ) for name in self.ownerComp.op("opfind1").col("name")[1:] ]
+
 	def PlayNext(self, fadeoutActive = False):
 		if fadeoutActive: self.FadeoutActive()
 		currentIndex = int( op("playlistState")["currentIndex"].eval() )
@@ -56,10 +64,10 @@ class extLayerPlayerController:
 		)
 
 	def _addItem(self, itemName):
-		self.ownerComp.selectedItems.appendRow( itemName )
+		self.ownerComp.op("selectedItems").appendRow( itemName )
 	
 	def _removeItem(self, itemName):
-		self.ownerComp.selectedItems.deleteRow( itemName )
+		self.ownerComp.op("selectedItems").deleteRow( itemName )
 
 	def ToggleItem(self, itemName):
 		if self.ownerComp.op("selectedItems")[ itemName, 0]:
@@ -67,4 +75,12 @@ class extLayerPlayerController:
 		else:
 			self._addItem( itemName )
 	
+	@property
+	def Presets(self):
+		return [key for key in iop.Store.Data.op("ProjectData").Data.Layer[self.ownerComp.par.Name.eval()].Presets.keys()]
 	
+	def RecallPreset(self, presetName):
+		self.ownerComp.op("selectedItems").clear()
+		self.ownerComp.op("selectedItems").appendRows(
+			iop.Store.Data.op("ProjectData").Data.Layer[self.ownerComp.par.Name.eval()].Presets[presetName]
+		)

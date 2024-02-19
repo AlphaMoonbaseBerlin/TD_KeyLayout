@@ -1,0 +1,91 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://example.com/product.schema.json",
+ "title": "TouchdesignerConfig",
+ "description": "A dynamic and schemabased jsonConfig for Touchdesigner",
+ "type": "object",
+ "properties": {
+  "ProjectName": {
+   "description": "A descriptive name. Not really needed.",
+   "type": [
+    "string"
+   ]
+  },
+  "Layer": {
+   "description": "",
+   "type": "object",
+   "additionalProperties": {
+    "description": "",
+    "type": "object",
+    "properties": {
+     "Default": {
+      "description": "",
+      "type": [
+       "string"
+      ]
+     },
+     "Transition": {
+      "description": "",
+      "type": [
+       "number"
+      ]
+     },
+     "Hold": {
+      "description": "",
+      "type": [
+       "integer"
+      ]
+     },
+     "FadeOverBlack": {
+      "description": "",
+      "type": [
+       "boolean"
+      ]
+     },
+     "Presets": {
+      "description": "",
+      "type": "object",
+      "additionalProperties": {
+       "description": "A list of Items which an be preselected.",
+       "type": "array",
+       "items": {
+        "description": "",
+        "type": [
+         "string"
+        ]
+       }
+      }
+     },
+     "Items": {
+      "description": "",
+      "type": "object",
+      "additionalProperties": {
+       "description": "",
+       "type": "object",
+       "properties": {
+        "Prefab": {
+         "description": "The prefab that should be loaded.",
+         "type": [
+          "string"
+         ]
+        },
+        "Arguments": {
+         "description": "",
+         "type": "object",
+         "additionalProperties": {
+          "description": "Key Valuepair describing a Parameter of the prefab.",
+          "type": [
+           "string",
+           "number",
+           "integer"
+          ]
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

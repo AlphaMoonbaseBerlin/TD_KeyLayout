@@ -45,9 +45,11 @@ class extDataManager:
 			elementOp = self.ownerComp.op("Prefabs").loadTox(
 				subElement
 			)
+			elementOp.par.externaltox.val = subElement
 			elementOp.name = subElement.stem
 
-	def LoadProject(self, projectPath:str):
+	def LoadProject(self):
+		projectPath = self.ownerComp.par.Project.eval()
 		self._clearItems()
 		self._loadItems( projectPath )
 		self._clearPrefabs()

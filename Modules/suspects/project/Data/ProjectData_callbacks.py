@@ -25,6 +25,12 @@ def GetConfigSchema(configModule:"Type[SchemaObjects]", configComp:"JsonConfig")
 		"Transition" : configModule.ConfigValue( default = 0.7),
 		"Hold" : configModule.ConfigValue( default = 5),
 		"FadeOverBlack" : configModule.ConfigValue( default = False),
+		"Presets" : configModule.NamedList(
+			default_member = configModule.CollectionList(
+				default_member = configModule.ConfigValue(default = "", typecheck = str),
+				comment = "A list of Items which an be preselected."
+			)
+		),
 		"Items": configModule.NamedList( default_member = LayerItem() )
 	})
 	return {
