@@ -9,7 +9,6 @@ from typing import Type
 def GetConfigSchema(configModule:"Type[SchemaObjects]", configComp:"JsonConfig") -> dict:
 	
 	LayerItem = configModule.CollectionDict({
-		#"Name" : configModule.ConfigValue( default = "", typecheck = str, comment = """The name of the Item. Needs to be Unique!"""),
 		"Prefab" : configModule.ConfigValue( default = "", typecheck = str, comment = """The prefab that should be loaded."""),
 		"Arguments" : configModule.NamedList( 
 			default_member = configModule.ConfigValue(
@@ -20,7 +19,6 @@ def GetConfigSchema(configModule:"Type[SchemaObjects]", configComp:"JsonConfig")
 	})
 
 	LayerObject = configModule.CollectionDict({
-		#"Name" : configModule.ConfigValue( default = "", typecheck = str, comment = """The name of the Layer. Needs to be Unique!"""),
 		"Default" : configModule.ConfigValue( default = ""),
 		"Transition" : configModule.ConfigValue( default = 0.7),
 		"Hold" : configModule.ConfigValue( default = 5),
