@@ -2,4 +2,6 @@ name	length
 Startup	1
 LoadData	1
 LoadLayout	1
+LoadController	1
+LoadUi	1
 OpenOutputs	1

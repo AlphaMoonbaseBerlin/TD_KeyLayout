@@ -6,18 +6,31 @@ Saveversion : 2022.35320
 Info Header End'''
 from typing import Type
 
-def GetConfigSchema(configModule:"SchemaObjects", configComp:"JsonConfig") -> dict:
-	configModule.ConfigValue()
-	layerItem = configModule.CollectionDict({
-		"Name" : configModule.ConfigValue( 
-			default = "CustomItem", typecheck=str),
-		"Parameter" : configModule.NamedList( 
-			default_member = configModule.ConfigValue( typecheck=(str, float)))
+def GetConfigSchema(configModule:"Type[SchemaObjects]", configComp:"JsonConfig") -> dict:
+	
+	LayerItem = configModule.CollectionDict({
+		#"Name" : configModule.ConfigValue( default = "", typecheck = str, comment = """The name of the Item. Needs to be Unique!"""),
+		"Prefab" : configModule.ConfigValue( default = "", typecheck = str, comment = """The prefab that should be loaded."""),
+		"Arguments" : configModule.NamedList( 
+			default_member = configModule.ConfigValue(
+				default = "",
+				typecheck = (str, float, int),
+				comment = "Key Valuepair describing a Parameter of the prefab."
+			))
 	})
-	layer = configModule.NamedList( default_member = layerItem() )
+
+	LayerObject = configModule.CollectionDict({
+		#"Name" : configModule.ConfigValue( default = "", typecheck = str, comment = """The name of the Layer. Needs to be Unique!"""),
+		"Default" : configModule.ConfigValue( default = ""),
+		"Transition" : configModule.ConfigValue( default = 0.7),
+		"Hold" : configModule.ConfigValue( default = 5),
+		"FadeOverBlack" : configModule.ConfigValue( default = False),
+		"Items": configModule.NamedList( default_member = LayerItem() )
+	})
 	return {
-		"Layer" : configModule.NamedList( 
-			default_member = configModule.ConfigValue() )
+		"ProjectName" : configModule.ConfigValue( default = "My Project", comment = "A descriptive name. Not really needed."),
+
+		"Layer" : configModule.NamedList( default_member = LayerObject())
 		}
 		
 		
